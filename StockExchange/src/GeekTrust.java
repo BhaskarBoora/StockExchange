@@ -6,13 +6,13 @@ import utils.OrderType;
 import java.lang.*;
 import java.io.*;
 
-public class Driver {
+public class GeekTrust {
 
 
 
-    public static void main(String args[]) throws java.lang.Exception{
+    public static void main(String[] args) throws java.lang.Exception{
 
-         String path = "src/Input/input.text";
+         String path = args[0];
          BufferedReader reader = new BufferedReader(new FileReader(path));
 
         String line = reader.readLine();
