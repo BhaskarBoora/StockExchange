@@ -7,7 +7,22 @@ import java.lang.*;
 import java.io.*;
 
 public class GeekTrust {
+    static class Tokenizer{
+        String words[];
+        int index;
 
+        Tokenizer(String line){
+            this.words = line.split("[ #:]");
+            index = 0;
+        }
+
+        String nextString(){
+            while(words[index].equals("") || words[index] == null)
+                index++;
+
+            return words[index++];
+        }
+    }
 
 
     public static void main(String[] args) throws java.lang.Exception{
@@ -18,18 +33,20 @@ public class GeekTrust {
         String line = reader.readLine();
         StockExchange exchange = new StockExchange();
         while(line != null){
-            String words[] = line.split("[ #:]");
+           Tokenizer tk = new Tokenizer(line);
 
-            int orderID = Integer.parseInt(words[1]);
 
-            int hour = Integer.parseInt(words[2]);
-            int minutes = Integer.parseInt(words[3]);
+            int orderID = Integer.parseInt(tk.nextString());
 
-            String ticker = words[4];
-            String orderType = words[5];
+            int hour = Integer.parseInt(tk.nextString());
+            int minutes = Integer.parseInt(tk.nextString());
 
-            double price = Double.parseDouble(words[6]);
-            int quantity = Integer.parseInt(words[7]);
+            String ticker = tk.nextString();
+            String orderType = tk.nextString();
+
+            double price = Double.parseDouble(tk.nextString());
+
+            int quantity = Integer.parseInt(tk.nextString());
 
             Order order = new Order(orderID,new Time(hour,minutes) ,ticker, OrderType.valueOf(orderType), price, quantity );
             exchange.executeOrder(order);
