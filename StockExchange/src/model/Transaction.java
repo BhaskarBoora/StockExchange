@@ -29,7 +29,7 @@ public class Transaction {
 
     public String outputString(){
 
-        return "#" + this.buyOrderID + " " + String.format("%.2f", this.sellPrice) + " " + this.quantity  + " #" + this.sellOrderID;
+        return String.format("#%d %.2f %d #%d", this.buyOrderID, this.sellPrice, this.quantity, this.sellOrderID);
 
     }
 }
